@@ -72,11 +72,11 @@ function LearningPhase() {
           </span>
         </h2>
         <p className="text-gray-400 mb-12">
-          Journey through our six phases along an animated Ƨ-shaped path.
+          Progress through our structured phases, each building upon the previous one.
         </p>
         <div
           ref={containerRef}
-          className="relative w-full max-w-5xl h-[55vw] min-h-[330px] max-h-[400px] mx-auto"
+          className="hidden md:block relative w-full max-w-5xl h-[55vw] min-h-[330px] max-h-[400px] mx-auto"
           style={{ aspectRatio: "900/400" }}
         >
           {/* SVG Path stays 100% of container size for responsiveness */}
@@ -187,6 +187,44 @@ function LearningPhase() {
               </motion.div>
             );
           })}
+        </div>
+
+         {/* ── Mobile: simple vertical stack ───────────────────────────── */}
+        <div className="block md:hidden space-y-6">
+          {phases.map((phase, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-900 border border-gray-700 rounded-xl p-4 shadow-2xl cursor-pointer group hover:scale-105 focus:scale-110 transition-transform duration-200"
+            >
+              <div className="flex items-center mb-2">
+                <div
+                  style={{
+                    backgroundColor: phaseColors[phase.color],
+                    color: "#fff",
+                  }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full text-xl mr-3"
+                >
+                  {phase.icon}
+                </div>
+                <div>
+                  <div className="text-sm text-gray-400">
+                    Phase {phase.number}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">
+                    {phase.title}
+                  </h3>
+                </div>
+              </div>
+              
+              <Link
+                to={`/phases/phase-${idx + 1}`}
+                style={{ background: phaseColors[phase.color] }}
+                className="inline-flex items-center px-3 py-2 text-white rounded-md text-sm font-medium"
+              >
+                Start <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>
