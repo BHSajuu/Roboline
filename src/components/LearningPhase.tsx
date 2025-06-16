@@ -23,7 +23,7 @@ const phaseColors: Record<string, string> = {
 
 function LearningPhase() {
   // Ƨ-curve path (reverse S, left to right)
-  const sCurve = "M120,340 C260,340 260,60 400,60 S540,340 780,340";
+  const sCurve = "M-70,0 C0,500 250,160 400,50 S600,440 980,360";
   const curveBox = { width: 900, height: 400 }; // SVG reference size
 
   const pathRef = useRef<SVGPathElement>(null);
@@ -64,7 +64,7 @@ function LearningPhase() {
   };
 
   return (
-    <section className="py-12 bg-gray-800">
+    <section className="pt-10 pb-24 bg-gray-800">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-5xl font-extrabold text-white mb-4">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
