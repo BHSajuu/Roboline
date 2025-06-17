@@ -92,7 +92,7 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
           <div className=' top-12 right-0'>
-            <img src="assets/robot1.png" alt="Robot" className='w-full h-auto animate-bounce rounded-lg shadow-lg' />
+            <img src="robot1.png" alt="Robot" className='w-full h-auto animate-pulse rounded-lg shadow-lg' />
           </div>
         </section>
 
