@@ -15,8 +15,8 @@ const Home: React.FC = () => {
       <div className="min-h-screen bg-gray-900">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-950/20 via-gray-950 to-purple-950/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-20">
-            <div className="ml-64 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 py-20">
+            <div className=" text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -91,9 +91,7 @@ const Home: React.FC = () => {
               </div>
             </motion.div>
           </div>
-          <div className=''>
-            <img src="public/robot1.png" alt="Robot" className='w-full h-auto animate-pulse rounded-lg shadow-lg' />
-          </div>
+       
         </section>
 
         {/* Features Section */}

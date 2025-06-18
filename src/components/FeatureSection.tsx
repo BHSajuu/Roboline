@@ -46,14 +46,11 @@ function FeatureSection() {
           viewport={{ once: true }}
           className="text-center mb-5"
         >
-          <div className='flex justify-self-end gap-36'>
-            <div className='flex flex-col'>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">Why Choose Our Documentation?</h2>
-              <p className="text-xl text-gray-400 max-w-3xl ">
-                Our comprehensive approach makes learning robotics accessible and enjoyable for everyone.
-              </p>
-            </div>
-            <img src="Public/robot2.png" alt="Robot pointing " className='w-32 h-48 animate-pulse' />
+          <div className='flex flex-col justify-center items-center gap-1'>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">Why Choose Our Documentation?</h2>
+            <p className="text-xl text-gray-400 max-w-4xl ">
+              Our comprehensive approach makes learning robotics accessible and enjoyable for everyone.
+            </p>
           </div>
 
         </motion.div>
