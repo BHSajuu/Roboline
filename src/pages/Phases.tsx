@@ -1,263 +1,186 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Tag, Clock, BarChart3, Code, Video, Image as ImageIcon, Zap, Sparkles, Cpu, Wrench } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Clock, 
+  BarChart3, 
+  Code, 
+  Video, 
+  Image as ImageIcon, 
+  CircuitBoard,
+  
+  Rocket,
+ 
+  Binary,
+
+  Armchair
+} from 'lucide-react';
 import { phases } from '../data/phases';
 
 const Phases: React.FC = () => {
   const getDifficultyColor = (index: number) => {
     const colors = [
-      'from-emerald-400 to-cyan-400',
-      'from-blue-400 to-indigo-400', 
-      'from-purple-400 to-pink-400'
+      'from-slate-500 to-cyan-400',
+      'from-slate-500 to-indigo-400', 
+      'from-slate-500 to-pink-400'
     ];
     return colors[index] || 'from-gray-400 to-gray-500';
   };
-
-  const getDifficultyLevel = (index: number) => {
-    const levels = ['Beginner', 'Intermediate', 'Advanced'];
-    return levels[index] || 'Beginner';
-  };
-
   const getEstimatedTime = (index: number) => {
     const times = ['2-3 hours', '3-4 hours', '4-5 hours'];
     return times[index] || '2-3 hours';
   };
 
-  const phaseIcons = ['🔍', '⚙️', '🚧'];
+  const getPhaseIcon = (index: number) => {
+    const icons = [
+      <Rocket className="w-10 h-10 text-white" />,
+      <CircuitBoard className="w-10 h-10 text-white" />,
+      <Armchair className="w-10 h-10 text-white" />
+    ];
+    return icons[index] || icons[0];
+  };
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
-        <div className="absolute inset-0">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-sm font-medium text-blue-300 mb-8"
-            >
-              <Sparkles className="h-4 w-4 mr-2" />
-              Progressive Learning Journey
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Learning Phases
-              </span>
-            </h1>
-            
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
-              Master robotics through our carefully structured phases. Each phase builds upon the previous one, 
-              taking you from basic concepts to advanced implementations with hands-on projects.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {phases.map((phase, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${getDifficultyColor(index)} rounded-2xl mb-4 shadow-lg`}>
-                    <span className="text-2xl">{phaseIcons[index]}</span>
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-2">Phase {index + 1}</div>
-                  <div className="text-gray-400">{getDifficultyLevel(index)}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-gray-900 overflow-hidden">
+      {/* Background Elements */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-900/10 rounded-full blur-[100px]"></div>
+        <div className="absolute top-1/3 right-1/4 w-0.5 h-64 bg-gradient-to-b from-cyan-400/30 to-transparent"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-0.5 h-64 bg-gradient-to-t from-purple-400/30 to-transparent"></div>
+      </div>
 
       {/* Phases Grid */}
-      <section className="py-24 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative  pt-8 pb-24 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-40">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center justify-center px-4 py-1.5 bg-gray-800 rounded-full mb-4 border border-cyan-400/30">
+              <Binary className="h-4 w-4 text-cyan-400 mr-2" />
+              <span className="text-cyan-400 text-sm font-medium">ROBOTICS PATH</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+              Build Your Robotics Expertise
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Progress through our comprehensive learning phases to master robotics from fundamentals to advanced applications
+            </p>
+          </motion.div>
+
           <div className="space-y-16">
             {phases.map((phase, index) => (
               <motion.div
                 key={phase.id}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="group"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 80
+                }}
+                whileHover={{ y: -10 }}
+                className="group relative"
               >
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-700 group-hover:border-blue-500/50 backdrop-blur-sm">
+                {/* Tech Pattern Overlay */}
+                <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zMCA2MGMxNi41NjkgMCAzMC0xMy40MzEgMzAtMzBTNDYuNTY5IDAgMzAgMCAwIDEzLjQzMSAwIDMwczEzLjQzMSAzMCAzMCAzMHptMC0zYzE0Ljg4OCAwIDI3LTEyLjExOSAyNy0yN1M0NC44ODggMyAzMCAzIDMgMTUuMTE5IDMgMzBzMTIuMTE5IDI3IDI3IDI3eiIgc3Ryb2tlPSJyZ2JhKDExMywgMTU2LCAyNTUsIDAuMDMpIiBzdHJva2Utd2lkdGg9IjEuNSIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
+                </div>
+                
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-700 group-hover:border-cyan-500/30 backdrop-blur-sm z-10">
                   {/* Phase Header */}
-                  <div className={`h-1 bg-gradient-to-r ${getDifficultyColor(index)}`}></div>
+                  <div className={`h-1.5 bg-gradient-to-r ${getDifficultyColor(index)}`}></div>
                   
                   <div className="p-8 lg:p-12">
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
                       {/* Content */}
                       <div className="flex-1">
-                        <div className="flex items-center mb-8">
-                          <div className={`w-20 h-20 bg-gradient-to-r ${getDifficultyColor(index)} rounded-3xl flex items-center justify-center text-white font-bold text-2xl mr-6 shadow-xl group-hover:scale-110 transition-transform duration-300`}>
-                            {String(index + 1).padStart(2, '0')}
+                        <div className="flex items-start mb-8">
+                          <div className={`w-24 h-24 bg-gradient-to-r ${getDifficultyColor(index)} rounded-2xl flex items-center justify-center text-white font-bold text-2xl mr-6 shadow-xl group-hover:shadow-cyan-500/20 transition-all duration-300 relative overflow-hidden`}>
+                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_70%)]"></div>
+                            {getPhaseIcon(index)}
                           </div>
-                          <div>
-                            <div className="text-sm font-medium text-gray-400 mb-2">Phase {index + 1}</div>
-                            <h2 className="text-4xl lg:text-5xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
+                          <div className="pt-1">
+                            <div className="text-sm font-medium text-gray-400 mb-2 flex items-center">
+                              <span>PHASE {index + 1}</span>
+                            </div>
+                            <h2 className="text-4xl lg:text-5xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
                               {phase.title}
                             </h2>
+                            <div className="flex items-center mt-3">
+                              <div className="flex items-center text-sm text-gray-400 mr-6">
+                                <Clock className="h-4 w-4 mr-1.5 text-cyan-400" />
+                                <span>{getEstimatedTime(index)}</span>
+                              </div>
+                              <div className="flex items-center text-sm text-gray-400">
+                                <BarChart3 className="h-4 w-4 mr-1.5 text-purple-400" />
+                                <span>{index === 0 ? 'Fundamental' : index === 1 ? 'Intermediate' : 'Advanced'}</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         
                         <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                           {phase.summary}
                         </p>
-
-                        {/* Meta Information */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                          <div className="flex items-center text-gray-400">
-                            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mr-4">
-                              <Clock className="h-6 w-6 text-blue-400" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-white">Duration</div>
-                              <div className="text-sm text-gray-400">{getEstimatedTime(index)}</div>
-                            </div>
-                          </div>
-                          <div className="flex items-center text-gray-400">
-                            <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mr-4">
-                              <BarChart3 className="h-6 w-6 text-green-400" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-white">Difficulty</div>
-                              <div className="text-sm text-gray-400">{getDifficultyLevel(index)}</div>
-                            </div>
-                          </div>
-                          <div className="flex items-center text-gray-400">
-                            <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mr-4">
-                              <Calendar className="h-6 w-6 text-purple-400" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-white">Updated</div>
-                              <div className="text-sm text-gray-400">{new Date(phase.createdAt).toLocaleDateString()}</div>
-                            </div>
-                          </div>
-                        </div>
-
+                        
                         {/* Tags */}
                         <div className="flex flex-wrap gap-3 mb-8">
                           {phase.tags.map((tag) => (
-                            <span
+                            <motion.span
                               key={tag}
-                              className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-400/30 backdrop-blur-sm"
+                              whileHover={{ y: -2 }}
+                              className="px-4 py-2 bg-gradient-to-r from-blue-500/15 to-purple-500/15 text-blue-300 rounded-full text-sm font-medium border border-blue-400/20 backdrop-blur-sm flex items-center"
                             >
+                              <span className="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
                               {tag}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
-
-                        {/* Hardware & Software Preview */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-6 rounded-2xl border border-blue-400/20 backdrop-blur-sm">
-                            <div className="flex items-center mb-4">
-                              <Cpu className="h-6 w-6 text-blue-400 mr-3" />
-                              <h4 className="font-semibold text-white">Hardware Components</h4>
-                            </div>
-                            <ul className="text-sm text-gray-300 space-y-2">
-                              {phase.hardware.slice(0, 3).map((item, i) => (
-                                <li key={i} className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                                  {item}
-                                </li>
-                              ))}
-                              {phase.hardware.length > 3 && (
-                                <li className="text-blue-400 font-medium">
-                                  +{phase.hardware.length - 3} more components
-                                </li>
-                              )}
-                            </ul>
-                          </div>
-                          
-                          <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-6 rounded-2xl border border-green-400/20 backdrop-blur-sm">
-                            <div className="flex items-center mb-4">
-                              <Wrench className="h-6 w-6 text-green-400 mr-3" />
-                              <h4 className="font-semibold text-white">Software & Tools</h4>
-                            </div>
-                            <ul className="text-sm text-gray-300 space-y-2">
-                              {phase.software.slice(0, 3).map((item, i) => (
-                                <li key={i} className="flex items-center">
-                                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                                  {item}
-                                </li>
-                              ))}
-                              {phase.software.length > 3 && (
-                                <li className="text-green-400 font-medium">
-                                  +{phase.software.length - 3} more tools
-                                </li>
-                              )}
-                            </ul>
-                          </div>
-                        </div>
-
+                        
                         {/* Content Stats */}
-                        <div className="flex items-center justify-between pt-6 border-t border-gray-700">
-                          <div className="flex items-center space-x-6 text-sm text-gray-400">
+                        <div className="flex flex-wrap items-center justify-between pt-6 border-t border-gray-700">
+                          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
                             <span className="flex items-center">
                               <Code className="h-4 w-4 mr-2 text-purple-400" />
-                              {phase.codeSnippets.length} code snippets
+                              {phase.codeSnippets.length} code modules
                             </span>
                             <span className="flex items-center">
                               <ImageIcon className="h-4 w-4 mr-2 text-cyan-400" />
-                              {phase.images.length} images
+                              {phase.images.length} schematics
                             </span>
                             {phase.videoUrl && (
                               <span className="flex items-center">
                                 <Video className="h-4 w-4 mr-2 text-red-400" />
-                                1 demo video
+                                Simulation videos
                               </span>
                             )}
                           </div>
                           
-                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <motion.div 
+                            whileHover={{ scale: 1.05 }} 
+                            whileTap={{ scale: 0.95 }}
+                            className="pt-4 sm:mt-0"
+                          >
                             <Link
                               to={`/phases/${phase.id}`}
-                              className={`group inline-flex items-center px-8 py-4 bg-gradient-to-r ${getDifficultyColor(index)} text-white rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300`}
+                              className={`group inline-flex items-center px-8 py-4 bg-gradient-to-r ${getDifficultyColor(index)} text-white rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}
                             >
-                              Start Phase
-                              <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_70%)]"></div>
+                              <span className="relative z-10">Initiate Phase</span>
+                              <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200 relative z-10" />
                             </Link>
                           </motion.div>
                         </div>
-                      </div>
-
-                      {/* Visual Element */}
-                      <div className="lg:w-80 flex-shrink-0">
-                        {phase.images.length > 0 && (
-                          <motion.div
-                            whileHover={{ scale: 1.05, rotate: 1 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                            className="relative"
-                          >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${getDifficultyColor(index)} opacity-20 rounded-3xl blur-xl`}></div>
-                            <img
-                              src={phase.images[0]}
-                              alt={phase.title}
-                              className="relative w-full h-64 object-cover rounded-3xl shadow-2xl border border-gray-600"
-                              loading="lazy"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-3xl"></div>
-                            <div className="absolute bottom-4 left-4 right-4">
-                              <div className="text-white font-semibold text-lg">{phaseIcons[index]} Phase {index + 1}</div>
-                            </div>
-                          </motion.div>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -269,36 +192,62 @@ const Phases: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative py-16 bg-gradient-to-br from-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 -left-20 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 -right-20 w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zMCA2MGMxNi41NjkgMCAzMC0xMy40MzEgMzAtMzBTNDYuNTY5IDAgMzAgMCAwIDEzLjQzMSAwIDMwczEzLjQzMSAzMCAzMCAzMHptMC0zYzE0Ljg4OCAwIDI3LTEyLjExOSAyNy0yN1M0NC44ODggMyAzMCAzIDMgMTUuMTE5IDMgMzBzMTIuMTE5IDI3IDI3IDI3eiIgc3Ryb2tlPSJyZ2JhKDU5LCAxMzAsIDI0NiwgMC4wNSkiIHN0cm9rZS13aWR0aD0iMS41Ii8+PC9nPjwvc3ZnPg==')] opacity-5"></div>
         </div>
         
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="relative"
           >
+            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2">
+              <div className="w-32 h-32 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-2xl"></div>
+            </div>
+            
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Start Your Journey?
+              Begin Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">Robotics Journey</span>
             </h2>
-            <p className="text-xl text-blue-100 mb-10 leading-relaxed">
-              Begin with Phase 1 and work your way through each stage. Every phase builds upon the previous one, 
-              ensuring you develop a solid foundation in robotics.
+            <p className="text-xl text-blue-100 mb-10 leading-relaxed max-w-3xl mx-auto">
+              Start with Phase 1 and systematically progress through each stage. Each phase builds on the previous, ensuring you develop comprehensive robotics expertise.
             </p>
             
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
               <Link
                 to="/phases/phase-1"
-                className="group inline-flex items-center px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300"
+                className="group inline-flex items-center px-10 py-5 bg-gradient-to-r from-slate-700 to-blue-600 text-white rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden"
               >
-                Begin Phase 1
-                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform duration-200" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_70%)] group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
+                <span className="relative z-10">Initiate Phase 1</span>
+                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform duration-200 relative z-10" />
               </Link>
             </motion.div>
+            
+            <div className="mt-8 text-gray-400 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex items-center">
+                <div className="w-3 h-3 bg-cyan-400 rounded-full mr-2 animate-pulse"></div>
+                <span>Real-world applications</span>
+              </div>
+              <div className="hidden sm:block">•</div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 bg-purple-400 rounded-full mr-2 animate-pulse"></div>
+                <span>Hands-on projects</span>
+              </div>
+              <div className="hidden sm:block">•</div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+                <span>Industry-standard techniques</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
