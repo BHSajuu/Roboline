@@ -79,7 +79,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
