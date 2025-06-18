@@ -91,8 +91,8 @@ const Home: React.FC = () => {
               </div>
             </motion.div>
           </div>
-          <div className=' top-12 right-0'>
-            <img src="robot1.png" alt="Robot" className='w-full h-auto animate-pulse rounded-lg shadow-lg' />
+          <div className=''>
+            <img src="public/robot1.png" alt="Robot" className='w-full h-auto animate-pulse rounded-lg shadow-lg' />
           </div>
         </section>
 

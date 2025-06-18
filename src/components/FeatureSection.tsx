@@ -53,7 +53,7 @@ function FeatureSection() {
                 Our comprehensive approach makes learning robotics accessible and enjoyable for everyone.
               </p>
             </div>
-            <img src="robot2.png" alt="Robot pointing " className='w-32 h-48 animate-pulse' />
+            <img src="Public/robot2.png" alt="Robot pointing " className='w-32 h-48 animate-pulse' />
           </div>
 
         </motion.div>
