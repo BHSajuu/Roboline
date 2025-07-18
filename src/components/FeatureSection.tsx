@@ -55,7 +55,7 @@ function FeatureSection() {
 
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -63,13 +63,14 @@ function FeatureSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className='animated-border-card'
             >
-              <div className="h-full bg-slate-950/80 hover:cursor-pointer hover:shadow-lg hover:shadow-blue-300/30  border border-gray-700 rounded-xl p-6  transition-all duration-300">
+              <div className="card-content flex flex-col items-center justify-center hover:cursor-pointer   transition-all duration-300">
                 <div className="w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-lg flex items-center justify-center mb-4">
                   <feature.icon className="h-6 w-6 text-blue-400" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-white">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
+                <p className="text-gray-400 text-center hyphens-auto">{feature.description}</p>
               </div>
             </motion.div>
           ))}

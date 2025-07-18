@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* CSS Custom Property for the rotating angle */
+@property --angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+}
+
+/* Animated border card styles */
+.animated-border-card {
+      position: relative;
+      padding: 3px;
+      background: transparent;
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: transform 0.3s ease;
+}
+
+.animated-border-card:hover {
+      transform: translateY(-5px) scale(1.02);
+}
+
+
+/* Border animation pseudo-elements */
+.animated-border-card:hover::after,
+.animated-border-card:hover::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #a78484);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      padding: 3px;
+      border-radius: 3rem;
+      animation: 1.8s spin linear infinite;
+}
+
+/* Blurred background effect */
+.animated-border-card:hover::before {
+      filter: blur(1.5rem);
+      opacity: 0.2;
+}
+
+/* Spinning animation */
+@keyframes spin {
+      from {
+            --angle: 0deg;
+      }
+
+      to {
+            --angle: 360deg;
+      }
+}
+
+/* Card content positioning - this creates the mask effect */
+.card-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      border-radius: 3rem;
+      background: #000;
+      padding: 1.5rem;
+
+}
+
+/* Ensure proper stacking context */
+.animated-border-card {
+      isolation: isolate;
+}
